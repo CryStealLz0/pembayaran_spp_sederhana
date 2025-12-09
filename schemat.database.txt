@@ -1,0 +1,31 @@
+CREATE DATABASE db_spp;
+USE db_spp;
+
+CREATE TABLE admin (
+  id_admin INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE siswa (
+  id_siswa INT AUTO_INCREMENT PRIMARY KEY,
+  nis VARCHAR(20) NOT NULL,
+  nama VARCHAR(100) NOT NULL,
+  kelas VARCHAR(20) NOT NULL,
+  jurusan VARCHAR(50) NOT NULL,
+  spp_per_bulan INT NOT NULL
+);
+
+CREATE TABLE pembayaran (
+  id_pembayaran INT AUTO_INCREMENT PRIMARY KEY,
+  id_siswa INT NOT NULL,
+  bulan VARCHAR(20) NOT NULL,
+  tahun INT NOT NULL,
+  tanggal_bayar DATE NOT NULL,
+  jumlah_bayar INT NOT NULL,
+  id_admin INT,
+  FOREIGN KEY (id_siswa) REFERENCES siswa(id_siswa),
+  FOREIGN KEY (id_admin) REFERENCES admin(id_admin)
+);
+
+INSERT INTO admin (username, password) VALUES ('admin', 'admin123');
